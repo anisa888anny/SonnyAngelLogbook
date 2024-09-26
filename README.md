@@ -3,7 +3,7 @@
 ## Sonny Angel collection tracker
 
 *This project will:*
-- Assist Sonny angel collectors in keeping tracck of their little babies
+- Assist Sonny angel collectors in keeping track of their little babies
 - Allow users to keep track of what angels they currently have
 - Allow users to keep track of what angels are on their wish list
 - Allow users to keep track of what angels they want to trade

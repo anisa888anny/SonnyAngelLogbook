@@ -16,6 +16,6 @@ The target audience for this project is Sonny Angel collectors (most likely teen
 *User Stories:*
 
 - I want to be able to add a Sonny Angel to my collection tracker 
-- I want to be able to see what Sonny Angels I have already connected
+- I want to be able to see what Sonny Angels I have already collected
 - I want to be able delete a Sonny Angel once I've gotten rid of it
 - I want to be able to see how many Sonny Angels I have 

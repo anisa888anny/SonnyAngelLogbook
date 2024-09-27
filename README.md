@@ -1,12 +1,12 @@
 # My Personal Project
 
-## Sonny Angel collection tracker
+## Sonny Angel Logger
 
 *This project will:*
-- Assist Sonny angel collectors in keeping track of their little babies
-- Allow users to keep track of what angels they currently have
-- Allow users to keep track of what angels are on their wish list
-- Allow users to keep track of what angels they want to trade
+- Assist Sonny angel collectors in keeping track of their Sonny Angel Transactions
+- Allow users to keep track of what angels they have been in posession
+- Users can input whether they have aquired or gotten rid of a Sonny Angel and when the transaction took place
+- Users can view what they have currently aquired
 
 
 *More Information:*
@@ -15,7 +15,7 @@ The target audience for this project is Sonny Angel collectors (most likely teen
 
 *User Stories:*
 
-- I want to be able to add a Sonny Angel to my collection tracker 
+- I want to be able to create a new input and log it to track when I have aquired or gotten rid of a Sonny Angel
 - I want to be able to see what Sonny Angels I have already collected
 - I want to be able delete a Sonny Angel once I've gotten rid of it
 - I want to be able to see how many Sonny Angels I have 

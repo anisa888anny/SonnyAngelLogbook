@@ -13,42 +13,47 @@ public class LogEntry {
     // EFFECTS: initializes a log entry with the specified angel name, date, and
     // transaction type
     public LogEntry(String angelName, int date, String transactionType) {
-        // stub
+        this.angelName = angelName;
+        this.date = date;
+        this.transactionType = transactionType;
 
     }
+
     // REQUIRES:
     // MODIFIES:
     // EFFECTS: returns the angel's name
-    public String getAngelName () {
-        return null;
+    public String getAngelName() {
+        return angelName;
     }
 
     // REQUIRES:
     // MODIFIES:
     // EFFECTS: returns the date of the transaction
     public int getDate() {
-        return 0;
+        return date;
     }
 
     // REQUIRES:
     // MODIFIES:
     // EFFECTS: return the transaction type
     public String getTransactionType() {
-        return null;
+        return transactionType;
     }
 
     // REQUIRES:
     // MODIFIES:
     // EFFECTS: return true if the transaction type is added
     public boolean isAdded() {
-        return false;
+        return transactionType.equals("added");
     }
 
     // REQUIRES:
     // MODIFIES:
     // EFFECTS: return true if the transaction type is sold or traded
     public boolean isSoldOrTraded() {
-        return false;
+        return transactionType.equals("sold") ||
+                transactionType.equals("traded");
+
     }
 
 }

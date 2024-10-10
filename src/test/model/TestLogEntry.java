@@ -43,4 +43,23 @@ public class TestLogEntry {
 
     }
 
+    @Test
+    void testAddRating() {
+        testEntry1.addRating (5);
+        testEntry1.addRating(4);
+
+        assertEquals(4.5, testEntry1.getAverageRating());
+    }
+
+    @Test
+    void testAverageRatingNoRatings() {
+        assertEquals(0.0, testEntry1.getAverageRating());
+    }
+
+    @Test
+    void testAverageRatingWithOneRating() {
+        testEntry1.addRating(3);
+        assertEquals(3, testEntry1.getAverageRating());
+    }
+
 }

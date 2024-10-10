@@ -10,7 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class TestLogbook {
-    
+
     private Logbook testBook;
 
     @BeforeEach
@@ -32,7 +32,6 @@ public class TestLogbook {
         LogEntry testEntry1 = new LogEntry("Apple", 20230413, "added");
         LogEntry testEntry2 = new LogEntry("Cabbage", 20240506, "added");
         LogEntry testEntry3 = new LogEntry("Apple", 20240101, "traded");
-
 
         testBook.addLogEntry(testEntry1);
         testBook.addLogEntry(testEntry2);
@@ -70,7 +69,7 @@ public class TestLogbook {
     }
 
     @Test
-    void testGetAllEntries () {
+    void testGetAllEntries() {
         LogEntry testEntry1 = new LogEntry("Apple", 20230413, "added");
         LogEntry testEntry2 = new LogEntry("Cabbage", 20240506, "traded");
         LogEntry testEntry3 = new LogEntry("Star", 20240101, "sold");
@@ -86,15 +85,54 @@ public class TestLogbook {
         assertEquals("Apple", allEntries.get(0).getAngelName());
         assertEquals(20230413, allEntries.get(0).getDate());
         assertEquals("added", allEntries.get(0).getTransactionType());
-    
+
         assertEquals("Cabbage", allEntries.get(1).getAngelName());
         assertEquals(20240506, allEntries.get(1).getDate());
         assertEquals("traded", allEntries.get(1).getTransactionType());
-    
+
         assertEquals("Star", allEntries.get(2).getAngelName());
         assertEquals(20240101, allEntries.get(2).getDate());
         assertEquals("sold", allEntries.get(2).getTransactionType());
 
+    }
+
+    @Test
+    void testRateAngel() {
+        LogEntry testEntry1 = new LogEntry("Star", 20230202, "added");
+        testBook.addLogEntry(testEntry1);
+        testBook.rateAngel("Star", 5);
+        testBook.rateAngel("Star", 4);
+        assertEquals(4.5, testEntry1.getAverageRating());
+    }
+
+    @Test
+    void testGetAverageCollectionRatingNoEntries() {
+        assertEquals(0.0, testBook.getAverageCollectionRating());
+    }
+
+    @Test
+    void testGetAverageCollectionRatingMultipleEntries() {
+        LogEntry testEntry1 = new LogEntry("Apple", 20230413, "added");
+        LogEntry testEntry2 = new LogEntry("Cabbage", 20240506, "traded");
+        testBook.addLogEntry(testEntry2);
+        testBook.addLogEntry(testEntry1);
+
+        testBook.rateAngel("Apple", 5);
+        testBook.rateAngel("Cabbage", 3);
+
+        assertEquals(4.0, testBook.getAverageCollectionRating());
+
+    }
+
+    @Test
+    void testGetAverageCollectionRatingSomeNotRated() {
+        LogEntry testEntry1 = new LogEntry("Apple", 20230413, "added");
+        LogEntry testEntry2 = new LogEntry("Cabbage", 20240506, "traded");
+        testBook.addLogEntry(testEntry2);
+        testBook.addLogEntry(testEntry1);  
+
+        testBook.rateAngel("Apple", 5);
+        assertEquals(5, testBook.getAverageCollectionRating());
     }
 
 }

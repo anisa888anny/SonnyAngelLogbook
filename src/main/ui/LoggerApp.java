@@ -15,6 +15,7 @@ public class LoggerApp {
 
     }
 
+    @SuppressWarnings("methodlength")
     // EFFECTS runs the console application
     public void run() {
         boolean keepRunning = true;
@@ -37,6 +38,12 @@ public class LoggerApp {
                     viewLogEntries();
                     break;
                 case "5":
+                    rateAngel();
+                    break;
+                case "6":
+                    viewAverageRating();
+                    break;
+                case "7":
                     keepRunning = false;
                     System.out.println("Exiting!");
                     break;
@@ -55,7 +62,9 @@ public class LoggerApp {
         System.out.println("2. View current Sonny Angel collection?");
         System.out.println("3. Check how many Sonny Angels are in collection?");
         System.out.println("4. View all log entries?");
-        System.out.println("5. Exit?");
+        System.out.println("5. Rate a Sonny Angel?");
+        System.out.println("6. View average rating of collection?");
+        System.out.println("7. Exit?");
         System.out.println("Please choose a command: ");
     }
 
@@ -107,5 +116,26 @@ public class LoggerApp {
     private void viewCollectionCount() {
         int count = logbook.getCollectionCount();
         System.out.println("You have " + count + " Sonny Angels in your collection!");
+    }
+
+    // REQUIRES that input angelName match an existing angel's name in logbook
+    // rating must be 1-5
+    // MODIFIES the corresponding LogEntry for the angel and the rating list is updated
+    //EFFECTS asks user to rate an angel, prints confirmation of rating being added
+    private void rateAngel() {
+        System.out.print("Enter the name of the angel to rate: ");
+        String angelName = scanner.nextLine();
+        System.out.print("Enter your rating (1-5): ");
+        int rating = Integer.parseInt(scanner.nextLine());
+        logbook.rateAngel(angelName, rating);
+        System.out.println("Rating added for " + angelName);
+    }
+
+    //REQUIRES
+    // MODIFIES
+    //EFFECTS
+    private void viewAverageRating() {
+        double averageRating = logbook.getAverageCollectionRating();
+        System.out.println("Average rating of your collection: " + averageRating);
     }
 }

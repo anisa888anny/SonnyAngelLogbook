@@ -1,10 +1,14 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 // Represents an entry in the logbook, Sonny angel name, a date, and the transaction type
 public class LogEntry {
     private String angelName; // name of Sonny Angel being logged
     private int date; // date of transaction
     private String transactionType; // type of transaction (traded, sold, added)
+    private List<Integer> ratings;
 
     // REQUIRES: angelName is not null or empty, date is a valid date in YYYYMMDD
     // format, transactionType is one of "traded", "sold", or "added"
@@ -14,6 +18,7 @@ public class LogEntry {
         this.angelName = angelName;
         this.date = date;
         this.transactionType = transactionType;
+        this.ratings = new ArrayList<>();
 
     }
 
@@ -43,6 +48,23 @@ public class LogEntry {
                 ||
                 transactionType.equals("traded");
 
+    }
+
+    // EFFECTS: adds a rating to the list of ratings
+    public void addRating(int rating) {
+        ratings.add(rating);
+    }
+
+    // EFFECTS: returns average rating of the angel
+    public double getAverageRating() {
+        if (ratings.isEmpty()) {
+            return 0.0;
+        }
+        int sum = 0;
+        for (int rating : ratings) {
+            sum += rating;
+        }
+        return (double) sum / ratings.size();
     }
 
 }

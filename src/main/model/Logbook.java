@@ -43,9 +43,40 @@ public class Logbook {
     public int getCollectionCount() {
         return getAvailableAngels().size();
     }
-    
-    // EFFECTS: returns all logbook entries 
+
+    // EFFECTS: returns all logbook entries
     public List<LogEntry> getAllEntries() {
-        return new ArrayList<>(entries); 
+        return new ArrayList<>(entries);
+    }
+
+    // REQUIRES: angelName is in the list of entries and it's rating
+    // is between 1 and 5
+    // EFFECTS: adds a rating for the specified angel
+    public void rateAngel(String angelName, int rating) {
+        for (LogEntry entry : entries) {
+            if (entry.getAngelName().equals(angelName)) {
+                entry.addRating(rating);
+                return;
+            }
+        }
+        System.out.println("Angel not found in the collection.");
+    }
+
+    // EFFECTS: returns average rating of all angels in collection
+    public double getAverageCollectionRating() {
+        if (entries.isEmpty()) {
+            return 0.0; // No entries, return 0
+        }
+        double totalRating = 0.0;
+        int ratedAngels = 0;
+
+        for (LogEntry entry : entries) {
+            double avgRating = entry.getAverageRating();
+            if (avgRating > 0) {
+                totalRating += avgRating;
+                ratedAngels++;
+            }
+        }
+        return ratedAngels > 0 ? totalRating / ratedAngels : 0.0;
     }
 }

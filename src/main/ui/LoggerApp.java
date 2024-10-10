@@ -34,6 +34,9 @@ public class LoggerApp {
                     viewCollectionCount();
                     break;
                 case "4":
+                    viewLogEntries();
+                    break;
+                case "5":
                     keepRunning = false;
                     System.out.println("Exiting!");
                     break;
@@ -51,7 +54,8 @@ public class LoggerApp {
         System.out.println("1. Add new log entry?");
         System.out.println("2. View current Sonny Angel collection?");
         System.out.println("3. Check how many Sonny Angels are in collection?");
-        System.out.println("4. Exit?");
+        System.out.println("4. View all log entries?");
+        System.out.println("5. Exit?");
         System.out.println("Please choose a command: ");
     }
 
@@ -72,6 +76,7 @@ public class LoggerApp {
 
     }
 
+    // EFFECTS shows list of Sonny Angels if there are any
     private void viewAvailableAngels() {
         List<String> angels = logbook.getAvailableAngels();
         if (angels.isEmpty()) {
@@ -84,6 +89,19 @@ public class LoggerApp {
         }
     }
 
+    // EFFECTS shows all log entries.
+    public void viewLogEntries() {
+        List<LogEntry> entries = logbook.getAllEntries();
+        if (entries.isEmpty()) {
+            System.out.println("No log entries found.");
+        } else {
+            System.out.println("Logbook Entries:");
+            for (LogEntry entry : entries) {
+                System.out.printf("Angel: %s, Date: %d, Transaction Type: %s%n",
+                        entry.getAngelName(), entry.getDate(), entry.getTransactionType());
+            }
+        }
+    }
 
     // EFFECTS displays the number of collected sonny angels
     private void viewCollectionCount() {

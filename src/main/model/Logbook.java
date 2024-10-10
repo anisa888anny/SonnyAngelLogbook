@@ -43,5 +43,9 @@ public class Logbook {
     public int getCollectionCount() {
         return getAvailableAngels().size();
     }
-
+    
+    // EFFECTS: returns all logbook entries 
+    public List<LogEntry> getAllEntries() {
+        return new ArrayList<>(entries); 
+    }
 }

@@ -30,8 +30,8 @@ public class TestLogEntry {
     @Test
     void testIsAdded() {
         assertTrue(testEntry1.isAdded());
-        assertFalse (testEntry2.isAdded());
-        assertFalse (testEntry3.isAdded());
+        assertFalse(testEntry2.isAdded());
+        assertFalse(testEntry3.isAdded());
 
     }
 

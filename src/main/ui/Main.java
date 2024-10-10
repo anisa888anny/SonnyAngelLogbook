@@ -2,7 +2,7 @@ package ui;
 
 public class Main {
     public static void main(String[] args) {
-     LoggerApp logger = new LoggerApp();
-     logger.run();
+        LoggerApp logger = new LoggerApp();
+        logger.run();
     }
 }

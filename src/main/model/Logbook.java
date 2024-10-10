@@ -20,12 +20,12 @@ public class Logbook {
     // MODIFIES:
     // EFFECTS: adds the entry to the list of entries
     public void addLogEntry(LogEntry entry) {
-    entries.add(entry);
+        entries.add(entry);
     }
 
     // REQUIRES:
     // MODIFIES:
-    // EFFECTS: returns list of names of Sonny Angels that have been added 
+    // EFFECTS: returns list of names of Sonny Angels that have been added
     // but not sold or traded
     public List<String> getAvailableAngels() {
         Set<String> addedAngels = new HashSet<>();

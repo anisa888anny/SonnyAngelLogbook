@@ -135,4 +135,43 @@ public class TestLogbook {
         assertEquals(5, testBook.getAverageCollectionRating());
     }
 
+    @Test
+     void testRateAngelNotInCollection() {
+        testBook.rateAngel("DNE", 4);
+        assertEquals(0, testBook.getAverageCollectionRating());
+     }
+
+     @Test
+     void testGetAvailableAngelsWithSoldOrTraded() {
+        LogEntry testEntry1 = new LogEntry("Apple", 20230413, "added");
+        LogEntry testEntry2 = new LogEntry("Cabbage", 20240506, "added");
+        LogEntry testEntry3 = new LogEntry("Apple", 20240101, "sold");
+        LogEntry testEntry4 = new LogEntry("Cabbage", 20240506, "traded");
+        LogEntry testEntry5 = new LogEntry("Star", 20230303, "added");
+        
+        testBook.addLogEntry(testEntry1);
+        testBook.addLogEntry(testEntry2);
+        testBook.addLogEntry(testEntry3);
+        testBook.addLogEntry(testEntry4);
+        List<String> availableAngels = testBook.getAvailableAngels();
+        assertTrue(availableAngels.isEmpty());
+        testBook.addLogEntry(testEntry5);
+        availableAngels = testBook.getAvailableAngels();
+        assertEquals(1, availableAngels.size());
+        assertTrue(availableAngels.contains("Star"));
+        assertFalse(availableAngels.contains("Apple"));
+
+
+
+     }
+
+     @Test
+     void testGetAverageCollectionRatingWithNoRatings() {
+        LogEntry testEntry1 = new LogEntry("Apple", 20230413, "added");
+        LogEntry testEntry2 = new LogEntry("Cabbage", 20240506, "added");
+        testBook.addLogEntry(testEntry1);
+        testBook.addLogEntry(testEntry2);
+        assertEquals(0.0, testBook.getAverageCollectionRating());
+     }
+
 }

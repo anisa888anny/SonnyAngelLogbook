@@ -15,6 +15,7 @@ The target audience for this project is Sonny Angel collectors (most likely teen
 
 *User Stories:*
 
-- I want to be able to create a new input and log it to track when I have aquired or gotten rid of a Sonny Angel
-- I want to be able to see what Sonny Angels I have currently have collected
+- I want to be able to add multiple logs entries of Sonny Angels to a logbook
+- I want to be able to see a list what Sonny Angels I have currently have collected
+- I want to be able to rate a Sonny Angel, and see the average rating of my collection
 - I want to be able to see how many Sonny Angels I currently have 

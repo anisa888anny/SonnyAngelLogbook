@@ -63,7 +63,7 @@ public class LoggerApp {
         System.out.println("3. Check how many Sonny Angels are in collection?");
         System.out.println("4. View all log entries?");
         System.out.println("5. Rate a Sonny Angel?");
-        System.out.println("6. View average rating of collection?");
+        System.out.println("6. View average ratings given?");
         System.out.println("7. Exit?");
         System.out.println("Please choose a command: ");
     }

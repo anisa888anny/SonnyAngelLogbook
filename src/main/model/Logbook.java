@@ -8,23 +8,19 @@ import java.util.Set;
 public class Logbook {
     private List<LogEntry> entries; // list of the log entries recorded
 
-    // REQUIRES:
-    // MODIFIES:
     // EFFECTS: initializes empty list of log entries
     public Logbook() {
         this.entries = new ArrayList<>();
 
     }
 
-    // REQUIRES: entry has name, date, and transaction type, no null fields
-    // MODIFIES:
+    // REQUIRES: entry has non-null input, and contains
+    // name, date, and transaction type, no null fields
     // EFFECTS: adds the entry to the list of entries
     public void addLogEntry(LogEntry entry) {
         entries.add(entry);
     }
 
-    // REQUIRES:
-    // MODIFIES:
     // EFFECTS: returns list of names of Sonny Angels that have been added
     // but not sold or traded
     public List<String> getAvailableAngels() {
@@ -42,8 +38,6 @@ public class Logbook {
         return new ArrayList<>(addedAngels);
     }
 
-    // REQUIRES:
-    // MODIFIES:
     // EFFECTS: returns the number of unique Sonny Angels that have been
     // added but not sold or traded
     public int getCollectionCount() {

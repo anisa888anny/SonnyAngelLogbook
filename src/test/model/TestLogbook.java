@@ -148,20 +148,27 @@ public class TestLogbook {
         LogEntry testEntry3 = new LogEntry("Apple", 20240101, "sold");
         LogEntry testEntry4 = new LogEntry("Cabbage", 20240506, "traded");
         LogEntry testEntry5 = new LogEntry("Star", 20230303, "added");
+        LogEntry testEntry6 = new LogEntry("Apple", 20230413, "added");
         
         testBook.addLogEntry(testEntry1);
-        testBook.addLogEntry(testEntry2);
         testBook.addLogEntry(testEntry3);
-        testBook.addLogEntry(testEntry4);
         List<String> availableAngels = testBook.getAvailableAngels();
         assertTrue(availableAngels.isEmpty());
+
+        testBook.addLogEntry(testEntry2);
+        testBook.addLogEntry(testEntry4);
+        List<String> availableAngels2 = testBook.getAvailableAngels();
+        assertTrue(availableAngels2.isEmpty());
+
         testBook.addLogEntry(testEntry5);
         availableAngels = testBook.getAvailableAngels();
         assertEquals(1, availableAngels.size());
         assertTrue(availableAngels.contains("Star"));
         assertFalse(availableAngels.contains("Apple"));
-
-
+        
+        testBook.addLogEntry(testEntry6);
+        availableAngels = testBook.getAvailableAngels();
+        assertTrue(availableAngels.contains("Apple"));
 
      }
 
@@ -174,4 +181,6 @@ public class TestLogbook {
         assertEquals(0.0, testBook.getAverageCollectionRating());
      }
 
+
+     
 }

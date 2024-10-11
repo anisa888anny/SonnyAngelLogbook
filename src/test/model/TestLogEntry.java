@@ -62,4 +62,5 @@ public class TestLogEntry {
         assertEquals(3, testEntry1.getAverageRating());
     }
 
+    
 }

@@ -24,18 +24,18 @@ public class Logbook {
     // EFFECTS: returns list of names of Sonny Angels that have been added
     // but not sold or traded
     public List<String> getAvailableAngels() {
-        Set<String> addedAngels = new HashSet<>();
-        Set<String> removedAngels = new HashSet<>();
+        Set<String> availableAngels = new HashSet<>();
+        //Set<String> removedAngels = new HashSet<>();
 
         for (LogEntry entry : entries) {
             if (entry.isAdded()) {
-                addedAngels.add(entry.getAngelName());
+                availableAngels.add(entry.getAngelName());
             } else if (entry.isSoldOrTraded()) {
-                removedAngels.add(entry.getAngelName());
+                availableAngels.remove(entry.getAngelName());
             }
         }
-        addedAngels.removeAll(removedAngels);
-        return new ArrayList<>(addedAngels);
+        //addedAngels.removeAll(removedAngels);
+        return new ArrayList<>(availableAngels);
     }
 
     // EFFECTS: returns the number of unique Sonny Angels that have been

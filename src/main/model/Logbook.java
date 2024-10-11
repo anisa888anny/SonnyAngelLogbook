@@ -30,7 +30,7 @@ public class Logbook {
         for (LogEntry entry : entries) {
             if (entry.isAdded()) {
                 availableAngels.add(entry.getAngelName());
-            } else if (entry.isSoldOrTraded()) {
+            } else  {
                 availableAngels.remove(entry.getAngelName());
             }
         }

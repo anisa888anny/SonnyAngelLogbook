@@ -129,27 +129,27 @@ public class TestLogbook {
         LogEntry testEntry1 = new LogEntry("Apple", 20230413, "added");
         LogEntry testEntry2 = new LogEntry("Cabbage", 20240506, "traded");
         testBook.addLogEntry(testEntry2);
-        testBook.addLogEntry(testEntry1);  
+        testBook.addLogEntry(testEntry1);
 
         testBook.rateAngel("Apple", 5);
         assertEquals(5, testBook.getAverageCollectionRating());
     }
 
     @Test
-     void testRateAngelNotInCollection() {
+    void testRateAngelNotInCollection() {
         testBook.rateAngel("DNE", 4);
         assertEquals(0, testBook.getAverageCollectionRating());
-     }
+    }
 
-     @Test
-     void testGetAvailableAngelsWithSoldOrTraded() {
+    @Test
+    void testGetAvailableAngelsWithSoldOrTraded() {
         LogEntry testEntry1 = new LogEntry("Apple", 20230413, "added");
         LogEntry testEntry2 = new LogEntry("Cabbage", 20240506, "added");
         LogEntry testEntry3 = new LogEntry("Apple", 20240101, "sold");
         LogEntry testEntry4 = new LogEntry("Cabbage", 20240506, "traded");
         LogEntry testEntry5 = new LogEntry("Star", 20230303, "added");
         LogEntry testEntry6 = new LogEntry("Apple", 20230413, "added");
-        
+
         testBook.addLogEntry(testEntry1);
         testBook.addLogEntry(testEntry3);
         List<String> availableAngels = testBook.getAvailableAngels();
@@ -165,22 +165,20 @@ public class TestLogbook {
         assertEquals(1, availableAngels.size());
         assertTrue(availableAngels.contains("Star"));
         assertFalse(availableAngels.contains("Apple"));
-        
+
         testBook.addLogEntry(testEntry6);
         availableAngels = testBook.getAvailableAngels();
         assertTrue(availableAngels.contains("Apple"));
 
-     }
+    }
 
-     @Test
-     void testGetAverageCollectionRatingWithNoRatings() {
+    @Test
+    void testGetAverageCollectionRatingWithNoRatings() {
         LogEntry testEntry1 = new LogEntry("Apple", 20230413, "added");
         LogEntry testEntry2 = new LogEntry("Cabbage", 20240506, "added");
         testBook.addLogEntry(testEntry1);
         testBook.addLogEntry(testEntry2);
         assertEquals(0.0, testBook.getAverageCollectionRating());
-     }
+    }
 
-
-     
 }

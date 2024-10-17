@@ -44,7 +44,7 @@ public class LogEntry {
 
     // EFFECTS: return true if the transaction type is sold or traded
     public boolean isSoldOrTraded() {
-        return transactionType.equals("sold")||transactionType.equals("traded");
+        return transactionType.equals("sold") || transactionType.equals("traded");
 
     }
 

@@ -16,11 +16,13 @@ public class Logbook {
 
     // REQUIRES: entry has non-null input, and contains
     // name, date, and transaction type, no null fields
+    // MODIFIES: this
     // EFFECTS: adds the entry to the list of entries
     public void addLogEntry(LogEntry entry) {
         entries.add(entry);
     }
 
+    // MODIFIES: this   
     // EFFECTS: returns list of names of Sonny Angels that have been added
     // but not sold or traded
     public List<String> getAvailableAngels() {
@@ -38,6 +40,7 @@ public class Logbook {
         return new ArrayList<>(availableAngels);
     }
 
+    // MODIFIES: this
     // EFFECTS: returns the number of unique Sonny Angels that have been
     // added but not sold or traded
     public int getCollectionCount() {
@@ -51,6 +54,7 @@ public class Logbook {
 
     // REQUIRES: angelName is in the list of entries and it's rating
     // is between 1 and 5
+    // MODIFIES: this
     // EFFECTS: adds a rating for the specified angel
     public void rateAngel(String angelName, int rating) {
         for (LogEntry entry : entries) {
@@ -62,6 +66,7 @@ public class Logbook {
         System.out.println("Angel not found in the collection.");
     }
 
+    // MODIFIES: this
     // EFFECTS: returns average rating of all angels in collection
     public double getAverageCollectionRating() {
         if (entries.isEmpty()) {

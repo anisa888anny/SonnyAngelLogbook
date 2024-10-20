@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+// creates a new logbook that stores log entries
 public class Logbook {
     private List<LogEntry> entries; // list of the log entries recorded
 

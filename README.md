@@ -20,3 +20,5 @@ The target audience for this project is Sonny Angel collectors (most likely teen
 - I want to be able to see a list what Sonny Angels I have currently have collected
 - I want to be able to rate a Sonny Angel, and see the average rating all Sonny Angels I've ever rated
 - I want to be able to see how many Sonny Angels I currently have 
+- I want to be able to save my LogBook if I would like to
+- I want to be able to be given the option to load my LogBook from file.

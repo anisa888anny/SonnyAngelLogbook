@@ -17,11 +17,11 @@ import java.util.stream.Stream;
 public class JsonReader {
 
     // EFFECTS: constructs reader to read from source file
-    JsonReader(String source) {
+    public JsonReader(String source) {
 
     }
 
-    Logbook read() throws IOException {
+    public Logbook read() throws IOException {
         return null;
     }
 

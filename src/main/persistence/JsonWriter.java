@@ -24,13 +24,13 @@ public class JsonWriter {
 
     // MODIFIES: this
     // writes JSON representation of logbook to file
-    void write(Logbook logbook) {
+    public void write(Logbook logbook) {
 
     }
 
     // MODIFIES: this
     // EFFECTS: closes writer
-    void close() {
+    public void close() {
 
     }
 

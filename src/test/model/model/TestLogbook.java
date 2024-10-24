@@ -1,4 +1,4 @@
-package model;
+package model.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -8,6 +8,9 @@ import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import model.LogEntry;
+import model.Logbook;
 
 public class TestLogbook {
 

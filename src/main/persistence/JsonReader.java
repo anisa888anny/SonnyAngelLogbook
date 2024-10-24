@@ -35,14 +35,14 @@ public class JsonReader {
         return null;
     }
 
-    //MODIFIES: logbook
-    //EFFECTS: parses logentries from JSON object and adds them to logbook
+    // MODIFIES: logbook
+    // EFFECTS: parses logentries from JSON object and adds them to logbook
     private void addLogEntries(Logbook logbook, JSONObject jsonObject) {
 
     }
 
-    //MODIFIES: logbook
-    //EFFECTS: parses logentry from JSON object and adds it to logbook
+    // MODIFIES: logbook
+    // EFFECTS: parses logentry from JSON object and adds it to logbook
     private LogEntry parseLogEntry(JSONObject jsonObject) {
         return null;
     }

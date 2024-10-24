@@ -23,21 +23,21 @@ public class Logbook {
         entries.add(entry);
     }
 
-    // MODIFIES: this   
+    // MODIFIES: this
     // EFFECTS: returns list of names of Sonny Angels that have been added
     // but not sold or traded
     public List<String> getAvailableAngels() {
         Set<String> availableAngels = new HashSet<>();
-        //Set<String> removedAngels = new HashSet<>();
+        // Set<String> removedAngels = new HashSet<>();
 
         for (LogEntry entry : entries) {
             if (entry.isAdded()) {
                 availableAngels.add(entry.getAngelName());
-            } else  {
+            } else {
                 availableAngels.remove(entry.getAngelName());
             }
         }
-        //addedAngels.removeAll(removedAngels);
+        // addedAngels.removeAll(removedAngels);
         return new ArrayList<>(availableAngels);
     }
 

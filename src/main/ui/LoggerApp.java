@@ -120,8 +120,9 @@ public class LoggerApp {
 
     // REQUIRES that input angelName match an existing angel's name in logbook
     // rating must be 1-5
-    // MODIFIES the corresponding LogEntry for the angel and the rating list is updated
-    //EFFECTS asks user to rate an angel, prints confirmation of rating being added
+    // MODIFIES the corresponding LogEntry for the angel and the rating list is
+    // updated
+    // EFFECTS asks user to rate an angel, prints confirmation of rating being added
     private void rateAngel() {
         System.out.print("Enter the name of the angel to rate: ");
         String angelName = scanner.nextLine();
@@ -131,9 +132,9 @@ public class LoggerApp {
         System.out.println("Rating added for " + angelName);
     }
 
-    //REQUIRES
+    // REQUIRES
     // MODIFIES
-    //EFFECTS
+    // EFFECTS
     private void viewAverageRating() {
         double averageRating = logbook.getAverageCollectionRating();
         System.out.println("Average rating of your collection: " + averageRating);

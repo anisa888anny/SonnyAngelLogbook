@@ -22,22 +22,22 @@ public class JsonWriter {
     public void open() throws FileNotFoundException {
     }
 
-    //MODIFIES: this
+    // MODIFIES: this
     // writes JSON representation of logbook to file
     void write(Logbook logbook) {
 
     }
 
-    //MODIFIES: this 
-    //EFFECTS: closes writer
+    // MODIFIES: this
+    // EFFECTS: closes writer
     void close() {
 
     }
 
-    //MODIFIES:this
-    //EFFECTS: writes string to file 
+    // MODIFIES:this
+    // EFFECTS: writes string to file
     private void saveToFile(String json) {
-        
+
     }
-    
+
 }

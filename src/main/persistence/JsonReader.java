@@ -46,7 +46,7 @@ public class JsonReader {
 
     // EFFECTS: parses logbook from JSON object and returns it
     private ArrayList<LogEntry> parseLogbook(JSONArray jsonArray) {
-        ArrayList<LogEntry> logEntries =  new ArrayList<>();
+        ArrayList<LogEntry> logEntries = new ArrayList<>();
 
         for (Object json : jsonArray) {
             JSONObject logJson = (JSONObject) json;
@@ -61,11 +61,11 @@ public class JsonReader {
     // // MODIFIES: logbook
     // // EFFECTS: parses logentries from JSON object and adds them to logbook
     // private void addLogEntries(Logbook logbook, JSONObject jsonObject) {
-    //     JSONArray jsonArray = jsonObject.getJSONArray("entries");
-    //     for (Object json : jsonArray) {
-    //         JSONObject nextEntry = (JSONObject) json;
-    //         logbook.addLogEntry(parseLogEntry(nextEntry));
-    //     }
+    // JSONArray jsonArray = jsonObject.getJSONArray("entries");
+    // for (Object json : jsonArray) {
+    // JSONObject nextEntry = (JSONObject) json;
+    // logbook.addLogEntry(parseLogEntry(nextEntry));
+    // }
 
     // }
 
@@ -78,10 +78,9 @@ public class JsonReader {
         LogEntry entry = new LogEntry(name, date, transactionType);
 
         JSONArray ratingsArray = jsonObject.getJSONArray("ratings");
-        //for (int i = 0; i < ratingsArray.length(); i++) {
-      //      entry.addRating(ratingsArray.getInt(i));
-       // }
-
+        // for (int i = 0; i < ratingsArray.length(); i++) {
+        // entry.addRating(ratingsArray.getInt(i));
+        // }
 
         return entry;
 

@@ -17,7 +17,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class TestJsonWriter extends TestJson {
 
-
     @Test
     void testWriterInvalidFile() {
         try {

@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -182,6 +184,42 @@ public class TestLogbook {
         testBook.addLogEntry(testEntry1);
         testBook.addLogEntry(testEntry2);
         assertEquals(0.0, testBook.getAverageCollectionRating());
+    }
+
+    @Test
+    void testToJson() {
+        // Setup some log entries
+        LogEntry testEntry1 = new LogEntry("Apple", 20230413, "added");
+        LogEntry testEntry2 = new LogEntry("Cabbage", 20240506, "sold");
+        LogEntry testEntry3 = new LogEntry("Star", 20240101, "traded");
+
+        // Add entries to the logbook
+        testBook.addLogEntry(testEntry1);
+        testBook.addLogEntry(testEntry2);
+        testBook.addLogEntry(testEntry3);
+
+        // Convert logbook to JSON
+        JSONObject json = testBook.toJson();
+
+        // Verify JSON structure
+        JSONArray entriesArray = json.getJSONArray("entries");
+        assertEquals(3, entriesArray.length()); // Verify 3 entries in JSON
+
+        // Verify each entry's details
+        JSONObject jsonEntry1 = entriesArray.getJSONObject(0);
+        assertEquals("Apple", jsonEntry1.getString("angelName"));
+        assertEquals(20230413, jsonEntry1.getInt("date"));
+        assertEquals("added", jsonEntry1.getString("transactionType"));
+
+        JSONObject jsonEntry2 = entriesArray.getJSONObject(1);
+        assertEquals("Cabbage", jsonEntry2.getString("angelName"));
+        assertEquals(20240506, jsonEntry2.getInt("date"));
+        assertEquals("sold", jsonEntry2.getString("transactionType"));
+
+        JSONObject jsonEntry3 = entriesArray.getJSONObject(2);
+        assertEquals("Star", jsonEntry3.getString("angelName"));
+        assertEquals(20240101, jsonEntry3.getInt("date"));
+        assertEquals("traded", jsonEntry3.getString("transactionType"));
     }
 
 }

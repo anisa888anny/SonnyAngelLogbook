@@ -24,8 +24,6 @@ public class LogEntry implements persistence.Writable {
 
     }
 
-
-
     // EFFECTS: returns the angel's name
     public String getAngelName() {
         return angelName;

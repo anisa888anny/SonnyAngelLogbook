@@ -2,6 +2,8 @@ package model.model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
+
 import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -65,22 +67,30 @@ public class TestLogEntry {
         assertEquals(3, testEntry1.getAverageRating());
     }
 
-   // New Test: Testing toJson method
+    @Test
+    void testGetRating() {
+        assertTrue(testEntry1.getRating().isEmpty());
+        testEntry1.addRating(3);
+        testEntry1.addRating(4);
+        testEntry1.addRating(5);
+        List<Integer> ratings = testEntry1.getRating();
+        assertEquals(3, ratings.size());
+        assertEquals(3, ratings.get(0));
+        assertEquals(4, ratings.get(1));
+        assertEquals(5, ratings.get(2));
+    }
+
     @Test
     void testToJson() {
-        // Add some ratings
         testEntry1.addRating(4);
         testEntry1.addRating(5);
 
-        // Convert to JSON
         JSONObject json = testEntry1.toJson();
 
-        // Check the JSON object fields
         assertEquals("Apple", json.getString("angelName"));
         assertEquals(20230413, json.getInt("date"));
         assertEquals("added", json.getString("transactionType"));
 
-        // Check ratings array in JSON
         assertTrue(json.has("ratings"));
         assertEquals(2, json.getJSONArray("ratings").length());
         assertEquals(4, json.getJSONArray("ratings").getInt(0));

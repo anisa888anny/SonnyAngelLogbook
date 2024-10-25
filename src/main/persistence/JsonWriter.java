@@ -1,8 +1,13 @@
 package persistence;
 
+import model.LogEntry;
 import model.Logbook;
-import org.json.JSONObject;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import java.util.List;
+
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
@@ -28,24 +33,40 @@ public class JsonWriter {
 
     // MODIFIES: this
     // writes JSON representation of logbook to file
-    public void write(Logbook logbook) {
-        JSONObject json = logbook.toJson();
-        saveToFile(json.toString(TAB));
+    public void writeLogbook(List<LogEntry> logEntries) {
+        JSONArray jsonArray = new JSONArray();
+        for (LogEntry log : logEntries) {
+            jsonArray.put(entryToJson(log));
+        }
 
+        saveToFile(jsonArray.toString(TAB));
     }
 
     // MODIFIES: this
     // EFFECTS: closes writer
     public void close() {
         writer.close();
-
     }
 
     // MODIFIES:this
     // EFFECTS: writes string to file
     private void saveToFile(String json) {
         writer.print(json);
+    }
 
+    private JSONObject entryToJson(LogEntry log) {
+        JSONObject eventJson = new JSONObject();
+        eventJson.put("angelName", log.getAngelName());
+        eventJson.put("date", log.getDate());
+        eventJson.put("transactionType", log.getTransactionType());
+        
+        JSONArray ratingsJson = new JSONArray();
+        for (int rating : log.getRating()) {
+            ratingsJson.put(rating);
+        }
+        eventJson.put("ratings", ratingsJson);
+
+        return eventJson;
     }
 
 }

@@ -24,6 +24,8 @@ public class LogEntry implements persistence.Writable {
 
     }
 
+
+
     // EFFECTS: returns the angel's name
     public String getAngelName() {
         return angelName;
@@ -53,6 +55,11 @@ public class LogEntry implements persistence.Writable {
     // EFFECTS: adds a rating to the list of ratings
     public void addRating(int rating) {
         ratings.add(rating);
+    }
+
+    // EFFECTS: adds a rating to the list of ratings
+    public List<Integer> getRating() {
+        return ratings;
     }
 
     // EFFECTS: returns average rating of the angel

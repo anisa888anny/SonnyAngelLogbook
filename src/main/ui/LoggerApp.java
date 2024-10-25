@@ -3,26 +3,29 @@ package ui;
 import java.util.Scanner;
 import model.LogEntry;
 import model.Logbook;
+import persistence.JsonReader;
 import persistence.JsonWriter;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
+import java.util.ArrayList;
 
 public class LoggerApp {
     private Logbook logbook;
+    private ArrayList<LogEntry> logEntries;
     private Scanner scanner;
 
     public LoggerApp() {
         logbook = new Logbook();
         scanner = new Scanner(System.in);
-
+        logEntries = new ArrayList<>();
     }
 
     @SuppressWarnings("methodlength")
     // EFFECTS runs the console application
     public void run() {
         boolean keepRunning = true;
-
         while (keepRunning) {
             displayMenu();
             String command = scanner.nextLine();
@@ -47,13 +50,18 @@ public class LoggerApp {
                     viewAverageRating();
                     break;
                 case "7":
+                    saveLogbook(); // Save the logbook to a file
+                    break;
+                case "8":
+                    loadLogbook(); // Load the logbook from a file
+                    break;
+                case "9":
                     keepRunning = false;
                     System.out.println("Exiting!");
                     break;
                 default:
                     System.out.println("Invalid, try again!");
                     break;
-
             }
         }
     }
@@ -67,7 +75,9 @@ public class LoggerApp {
         System.out.println("4. View all log entries?");
         System.out.println("5. Rate a Sonny Angel?");
         System.out.println("6. View average ratings given?");
-        System.out.println("7. Exit?");
+        System.out.println("7. Save logbook?");
+        System.out.println("8. Load logbook?");
+        System.out.println("9. Exit?");
         System.out.println("Please choose a command: ");
     }
 
@@ -139,6 +149,35 @@ public class LoggerApp {
     private void viewAverageRating() {
         double averageRating = logbook.getAverageCollectionRating();
         System.out.println("Average rating of your collection: " + averageRating);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: saves the logbook data to a JSON file
+    private void saveLogbook() {
+        JsonWriter writer = new JsonWriter("./data/logbook.json");
+        try {
+            writer.open();
+            writer.writeLogbook(logbook.getAllEntries());
+            writer.close();
+            System.out.println("Logbook saved successfully!");
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to save logbook: file not found.");
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads the logbook data from a JSON file
+    private void loadLogbook() {
+        JsonReader reader = new JsonReader("./data/logbook.json");
+        try {
+            logEntries = reader.read();
+            for (LogEntry entry : logEntries) {
+                logbook.addLogEntry(entry);
+            }
+            System.out.println("Logbook loaded successfully!");
+        } catch (IOException e) {
+            System.out.println("Unable to load logbook: file not found or corrupted.");
+        }
     }
 
 }

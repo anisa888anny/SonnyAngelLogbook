@@ -1,0 +1,14 @@
+[
+    {
+        "date": 1111111,
+        "transactionType": "added",
+        "ratings": [],
+        "angelName": "hi"
+    },
+    {
+        "date": 111111,
+        "transactionType": "sold",
+        "ratings": [],
+        "angelName": "ok"
+    }
+]

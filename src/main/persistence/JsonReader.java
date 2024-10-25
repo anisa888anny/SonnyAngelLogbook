@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.stream.Stream;
 
 // referenced code given in demo JSON
@@ -23,41 +24,50 @@ public class JsonReader {
 
     }
 
-    public Logbook read() throws IOException {
-        String jsonData = readFile(source);
-        JSONObject jsonObject = new JSONObject(jsonData);
-        return parseLogbook(jsonObject);
+    public ArrayList<LogEntry> read() throws IOException {
+        // String jsonData = readFile(source);
+        // JSONObject jsonObject = new JSONObject(jsonData);
+        // return parseLogbook(jsonObject);
 
+        String jsonData = readFile(source);
+        JSONArray jsonArray = new JSONArray(jsonData);
+        return parseLogbook(jsonArray);
     }
 
     // EFFECTS: reads source file as string and returns it
     private String readFile(String source) throws IOException {
         StringBuilder contentBuilder = new StringBuilder();
         try (Stream<String> stream = Files.lines(Paths.get(source), StandardCharsets.UTF_8)) {
-            stream.forEach(contentBuilder::append);
+            stream.forEach(s -> contentBuilder.append(s));
         }
         return contentBuilder.toString();
 
     }
 
     // EFFECTS: parses logbook from JSON object and returns it
-    private Logbook parseLogbook(JSONObject jsonObject) {
-        Logbook logbook = new Logbook();
-        addLogEntries(logbook, jsonObject);
-        return logbook;
+    private ArrayList<LogEntry> parseLogbook(JSONArray jsonArray) {
+        ArrayList<LogEntry> logEntries =  new ArrayList<>();
 
-    }
-
-    // MODIFIES: logbook
-    // EFFECTS: parses logentries from JSON object and adds them to logbook
-    private void addLogEntries(Logbook logbook, JSONObject jsonObject) {
-        JSONArray jsonArray = jsonObject.getJSONArray("entries");
         for (Object json : jsonArray) {
-            JSONObject nextEntry = (JSONObject) json;
-            logbook.addLogEntry(parseLogEntry(nextEntry));
+            JSONObject logJson = (JSONObject) json;
+            LogEntry logEntry = parseLogEntry(logJson);
+            logEntries.add(logEntry);
         }
 
+        return logEntries;
+
     }
+
+    // // MODIFIES: logbook
+    // // EFFECTS: parses logentries from JSON object and adds them to logbook
+    // private void addLogEntries(Logbook logbook, JSONObject jsonObject) {
+    //     JSONArray jsonArray = jsonObject.getJSONArray("entries");
+    //     for (Object json : jsonArray) {
+    //         JSONObject nextEntry = (JSONObject) json;
+    //         logbook.addLogEntry(parseLogEntry(nextEntry));
+    //     }
+
+    // }
 
     // MODIFIES: logbook
     // EFFECTS: parses logentry from JSON object and adds it to logbook
@@ -73,7 +83,7 @@ public class JsonReader {
         }
 
         return entry;
-        
+
     }
 
 }

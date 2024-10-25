@@ -9,15 +9,22 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestJsonReader {
+
+    Logbook logbook = new Logbook();
 
     @Test
     void testReaderNonExistentFile() {
         JsonReader reader = new JsonReader("./data/noSuchFile.json");
         try {
-            Logbook logbook = reader.read();
+            ArrayList<LogEntry> logEntries = reader.read();
+            for (LogEntry entry : logEntries) {
+                logbook.addLogEntry(entry);
+            }
             fail("IOException was expected");
         } catch (IOException e) {
             // pass: expected exception was thrown
@@ -28,7 +35,10 @@ public class TestJsonReader {
     void testReaderEmptyLogbook() {
         JsonReader reader = new JsonReader("./data/testReaderEmptyLogbook.json");
         try {
-            Logbook logbook = reader.read();
+            ArrayList<LogEntry> logEntries = reader.read();
+            for (LogEntry entry : logEntries) {
+                logbook.addLogEntry(entry);
+            }
             assertEquals(0, logbook.getAllEntries().size());
         } catch (IOException e) {
             fail("Couldn't read from file");
@@ -39,7 +49,10 @@ public class TestJsonReader {
     void testReaderGeneralLogbook() {
         JsonReader reader = new JsonReader("./data/testReaderGeneralLogbook.json");
         try {
-            Logbook logbook = reader.read();
+            ArrayList<LogEntry> logEntries = reader.read();
+            for (LogEntry entry : logEntries) {
+                logbook.addLogEntry(entry);
+            }
             assertEquals(2, logbook.getAllEntries().size());
             LogEntry entry1 = logbook.getAllEntries().get(0);
             assertEquals("Angel1", entry1.getAngelName());

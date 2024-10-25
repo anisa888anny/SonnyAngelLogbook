@@ -61,9 +61,9 @@ public class JsonWriter {
         eventJson.put("transactionType", log.getTransactionType());
         
         JSONArray ratingsJson = new JSONArray();
-        for (int rating : log.getRating()) {
-            ratingsJson.put(rating);
-        }
+       // for (int rating : log.getRating()) {
+         //   ratingsJson.put(rating);
+       // }
         eventJson.put("ratings", ratingsJson);
 
         return eventJson;

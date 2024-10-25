@@ -1,0 +1,14 @@
+[
+    {
+        "date": 20230101,
+        "transactionType": "added",
+        "ratings": [],
+        "angelName": "Angel1"
+    },
+    {
+        "date": 20230102,
+        "transactionType": "sold",
+        "ratings": [],
+        "angelName": "Angel2"
+    }
+]

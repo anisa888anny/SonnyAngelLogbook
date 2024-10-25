@@ -5,8 +5,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 // creates a new logbook that stores log entries
-public class Logbook {
+public class Logbook implements persistence.Writable {
     private List<LogEntry> entries; // list of the log entries recorded
 
     // EFFECTS: initializes empty list of log entries
@@ -84,5 +87,17 @@ public class Logbook {
             }
         }
         return ratedAngels > 0 ? totalRating / ratedAngels : 0.0;
+    }
+
+    // Converts this logbook to a JSON object
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        JSONArray jsonEntries = new JSONArray();
+        for (LogEntry entry : entries) {
+            jsonEntries.put(entry.toJson());
+        }
+        json.put("entries", jsonEntries);
+        return json;
     }
 }

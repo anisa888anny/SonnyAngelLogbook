@@ -3,8 +3,10 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONObject;
+
 // Represents an entry in the logbook, Sonny angel name, a date, and the transaction type
-public class LogEntry {
+public class LogEntry implements persistence.Writable {
     private String angelName; // name of Sonny Angel being logged
     private int date; // date of transaction
     private String transactionType; // type of transaction (traded, sold, added)
@@ -63,6 +65,17 @@ public class LogEntry {
             sum += rating;
         }
         return (double) sum / ratings.size();
+    }
+
+    // Converts this log entry to a JSON object
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("angelName", angelName);
+        json.put("date", date);
+        json.put("transactionType", transactionType);
+        json.put("ratings", ratings);
+        return json;
     }
 
 }

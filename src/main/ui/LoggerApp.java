@@ -3,6 +3,9 @@ package ui;
 import java.util.Scanner;
 import model.LogEntry;
 import model.Logbook;
+import persistence.JsonWriter;
+
+import java.io.FileNotFoundException;
 import java.util.List;
 
 public class LoggerApp {
@@ -132,11 +135,10 @@ public class LoggerApp {
         System.out.println("Rating added for " + angelName);
     }
 
-    // REQUIRES
-    // MODIFIES
-    // EFFECTS
+    // EFFECTS prints average rating
     private void viewAverageRating() {
         double averageRating = logbook.getAverageCollectionRating();
         System.out.println("Average rating of your collection: " + averageRating);
     }
+
 }

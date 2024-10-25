@@ -4,9 +4,12 @@ import model.LogEntry;
 import model.Logbook;
 import persistence.JsonReader;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -69,4 +72,34 @@ public class TestJsonReader {
             fail("Couldn't read from file"); // Fail if an exception is thrown.
         }
     }
+
+    @Test
+    void testParseLogEntry() {
+        try {
+            // Set up the JSON object with test data.
+            JSONObject jsonEntry = new JSONObject();
+            jsonEntry.put("angelName", "TestAngel");
+            jsonEntry.put("date", 20231010);
+            jsonEntry.put("transactionType", "added");
+            jsonEntry.put("ratings", new JSONArray("[5, 4, 3]"));
+
+            JsonReader reader = new JsonReader("./data/dummy.json");
+            Method method = JsonReader.class.getDeclaredMethod("parseLogEntry", JSONObject.class);
+            method.setAccessible(true);
+
+            LogEntry logEntry = (LogEntry) method.invoke(reader, jsonEntry);
+
+            assertEquals("TestAngel", logEntry.getAngelName());
+            assertEquals(20231010, logEntry.getDate());
+            assertEquals("added", logEntry.getTransactionType());
+            assertEquals(3, logEntry.getRating().size());
+            assertEquals(5, logEntry.getRating().get(0));
+            assertEquals(4, logEntry.getRating().get(1));
+            assertEquals(3, logEntry.getRating().get(2));
+
+        } catch (Exception e) {
+            fail("Exception occurred: " + e.getMessage());
+        }
+    }
+
 }

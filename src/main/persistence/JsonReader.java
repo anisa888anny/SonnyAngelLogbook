@@ -78,9 +78,9 @@ public class JsonReader {
         LogEntry entry = new LogEntry(name, date, transactionType);
 
         JSONArray ratingsArray = jsonObject.getJSONArray("ratings");
-        // for (int i = 0; i < ratingsArray.length(); i++) {
-        // entry.addRating(ratingsArray.getInt(i));
-        // }
+        for (int i = 0; i < ratingsArray.length(); i++) {
+            entry.addRating(ratingsArray.getInt(i));
+        }
 
         return entry;
 

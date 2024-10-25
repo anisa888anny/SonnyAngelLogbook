@@ -5,10 +5,13 @@ import model.Logbook;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
@@ -72,4 +75,34 @@ class TestJsonWriter extends TestJson {
             fail("Exception should not have been thrown");
         }
     }
+
+    @Test
+    void testEntryToJson() {
+        try {
+            LogEntry logEntry = new LogEntry("TestAngel", 20231015, "added");
+            logEntry.addRating(5);
+            logEntry.addRating(4);
+            logEntry.addRating(3);
+
+            JsonWriter writer = new JsonWriter("./data/dummy.json");
+            Method method = JsonWriter.class.getDeclaredMethod("entryToJson", LogEntry.class);
+            method.setAccessible(true); // Make the method accessible.
+
+            JSONObject jsonObject = (JSONObject) method.invoke(writer, logEntry);
+
+            assertEquals("TestAngel", jsonObject.getString("angelName"));
+            assertEquals(20231015, jsonObject.getInt("date"));
+            assertEquals("added", jsonObject.getString("transactionType"));
+
+            JSONArray ratingsArray = jsonObject.getJSONArray("ratings");
+            assertEquals(3, ratingsArray.length());
+            assertEquals(5, ratingsArray.getInt(0));
+            assertEquals(4, ratingsArray.getInt(1));
+            assertEquals(3, ratingsArray.getInt(2));
+
+        } catch (Exception e) {
+            fail("Exception occurred: " + e.getMessage());
+        }
+    }
+
 }

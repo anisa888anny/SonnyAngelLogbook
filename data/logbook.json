@@ -1,6 +1,6 @@
 [{
-    "date": 202020,
+    "date": 202202,
     "transactionType": "added",
-    "ratings": [],
-    "angelName": "ja"
+    "ratings": [3],
+    "angelName": "happ"
 }]

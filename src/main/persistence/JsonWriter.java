@@ -13,6 +13,7 @@ import java.io.PrintWriter;
 
 // referenced code given in demo JSON
 
+//represents a writer
 public class JsonWriter {
     private static final int TAB = 4;
     private PrintWriter writer;

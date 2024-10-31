@@ -16,6 +16,7 @@ public class LoggerApp {
     private ArrayList<LogEntry> logEntries;
     private Scanner scanner;
 
+    // represents the logbook options
     public LoggerApp() {
         logbook = new Logbook();
         scanner = new Scanner(System.in);

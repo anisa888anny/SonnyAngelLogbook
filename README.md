@@ -25,10 +25,10 @@ The target audience for this project is Sonny Angel collectors (most likely teen
 
 *Instructions for End User"
 
-- To add a Sonny Angel log entry to the logbook type in the Sonny Angle's name, date added, and transaction type (sold traded or added). Then click the "Add Log Entry" button. To add another log entry delete the text in the Angel Name field, Date field, and Transaction Type Field before typing in the new information. 
-- You can generate the first required action related to the user story "adding multiple Xs to a Y" by making sure it has been written about before in the log book. Then, type in the Angel's name into the Angel Name text box and it's rating in the Rating text box. Then, click the "Rate Angel" to add that rating. To view the average rating of angels click the "View Average Rating" button. 
-- You can generate the second required action related to the user story "adding multiple Xs to a Y" by clicking the "View All Entries" button.
-- You can generate the another required action related to the user story "adding multiple Xs to a Y" by clicking the "View Available Angels" button.
+- To add a Sonny Angel log entry to the logbook type in the Sonny Angle's name, date added, and transaction type (sold traded or added) into the Angel Name, Date, and Transaction Type text boxes respectively. Then click the "Add Log Entry" button. To add another log entry delete the text in the Angel Name field, Date field, and Transaction Type Field before typing in the new information. 
+- You can generate the first required action related to the user story "adding multiple Xs to a Y" by making sure that the angel being rated has been added to the log book prior. Then, type in the Angel's name into the Angel Name text box and it's rating in the Rating text box. Then, click the "Rate Angel" to add that rating. To view the average rating of angels click the "View Average Rating" button. 
+- You can generate the second required action related to the user story "adding multiple Xs to a Y" by clicking the "View All Entries" button to view all the log entries.
+- You can generate the another required action related to the user story "adding multiple Xs to a Y" by clicking the "View Available Angels" button to view what angels are available.
 - You can locate my visual component by looking to the right of the title, you should see a Sonny Angel cat. 
 - You can save the state of my application by clicking "Save Logbook".
 - You can reload the state of my application by clicking "Load Logbook".

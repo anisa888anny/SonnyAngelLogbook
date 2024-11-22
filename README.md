@@ -22,3 +22,13 @@ The target audience for this project is Sonny Angel collectors (most likely teen
 - I want to be able to see how many Sonny Angels I currently have 
 - I want to be able to save my LogBook if I would like to
 - I want to be able to be given the option to load my LogBook from file.
+
+*Instructions for End User"
+
+- To add a Sonny Angel log entry to the logbook type in the Sonny Angle's name, date added, and transaction type (sold traded or added). Then click the "Add Log Entry" button. To add another log entry delete the text in the Angel Name field, Date field, and Transaction Type Field before typing in the new information. 
+- To see a list of log entries click the "View All Entries" button.
+- To see the currently available Angels in your collection click the "View Available Angels" button.
+- To rate an angel you must first make sure it has been written about before in the log book. Then, type in the Angel's name into the Angel Name text box and it's rating in the Rating text box. Then, click the "Rate Angel" to add that rating. To view the average rating of angels click the "View Average Rating" button. 
+- To see the visual component look to the right of the title, you should see a Sonny Angel cat. 
+- To save the state of the application click "Save Logbook".
+- To load the state of the application from a file click "Load Logbook".

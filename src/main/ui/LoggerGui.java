@@ -62,7 +62,7 @@ public class LoggerGui extends JFrame {
         add(headerPanel, BorderLayout.NORTH);
 
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(6, 1));
+        buttonPanel.setLayout(new GridLayout(7, 1)); // Updated to 7 rows for the new button
 
         JButton addLogEntryButton = new JButton("Add Log Entry");
         JButton viewAngelsButton = new JButton("View Available Angels");
@@ -71,6 +71,7 @@ public class LoggerGui extends JFrame {
         JButton loadButton = new JButton("Load Logbook");
         JButton rateAngelButton = new JButton("Rate Angel");
         JButton viewAverageRatingButton = new JButton("View Average Rating");
+        JButton viewAllEntriesButton = new JButton("View All Entries"); // New button
 
         buttonPanel.add(addLogEntryButton);
         buttonPanel.add(viewAngelsButton);
@@ -79,6 +80,7 @@ public class LoggerGui extends JFrame {
         buttonPanel.add(loadButton);
         buttonPanel.add(rateAngelButton);
         buttonPanel.add(viewAverageRatingButton);
+        buttonPanel.add(viewAllEntriesButton); // Added new button
 
         JPanel inputPanel = new JPanel();
         inputPanel.setLayout(new GridLayout(5, 2));
@@ -153,6 +155,13 @@ public class LoggerGui extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 viewAverageRating();
+            }
+        });
+
+        viewAllEntriesButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                viewAllEntries();
             }
         });
     }
@@ -242,6 +251,22 @@ public class LoggerGui extends JFrame {
     private void viewAverageRating() {
         double averageRating = logbook.getAverageCollectionRating();
         outputArea.append("Average Rating of Angels in Collection: " + averageRating + "\n");
+    }
+
+    // MODIFIES: outputArea
+    // EFFECTS: displays all log entries in the outputArea, or a message if no entries exist
+    private void viewAllEntries() {
+        List<LogEntry> entries = logbook.getAllEntries();
+        if (entries.isEmpty()) {
+            outputArea.append("No entries in the logbook yet!\n");
+        } else {
+            outputArea.append("All Log Entries:\n");
+            for (LogEntry entry : entries) {
+                outputArea.append(String.format("Angel: %s, Date: %d, Transaction: %s\n", 
+                    entry.getAngelName(), entry.getDate(), entry.getTransactionType()));
+            }
+            outputArea.append("------------------------\n");
+        }
     }
 
     // EFFECTS creates instance of LoggerGUI

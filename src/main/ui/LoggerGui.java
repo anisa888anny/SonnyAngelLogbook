@@ -22,19 +22,44 @@ public class LoggerGui extends JFrame {
     private JTextField ratingField;
 
     // MODIFIES: logbook
-    //EFFECTS: creates new LoggerGui object and new logbook
+    // EFFECTS: creates new LoggerGui object and new logbook
     public LoggerGui() {
         logbook = new Logbook();
         setupUI();
     }
 
-    //MODIFIES: loggerGUI, loggerGui components
-    //EFFECTS: sets up GUI buttons fieleds and outputs, listens for actions and binds them to methods
+    
+    // MODIFIES: loggerGUI, loggerGui components
+    // EFFECTS: sets up GUI buttons fields and outputs, listens for actions and
+    // binds them to methods
+    @SuppressWarnings("methodlength")
     private void setupUI() {
         setTitle("Sonny Angel Logger");
         setLayout(new BorderLayout());
         setSize(500, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // Add header panel
+        JPanel headerPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        headerPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+        // Create and style header label
+        JLabel titleLabel = new JLabel("Sonny Angel Logbook");
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
+
+        // Create and size the image
+        ImageIcon originalIcon = new ImageIcon("./data/image.png"); // Adjust path as needed
+        Image image = originalIcon.getImage();
+        Image resizedImage = image.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+        ImageIcon resizedIcon = new ImageIcon(resizedImage);
+        JLabel imageLabel = new JLabel(resizedIcon);
+
+        // Add components to header panel
+        headerPanel.add(titleLabel);
+        headerPanel.add(imageLabel);
+
+        // Add header panel to the NORTH of the frame
+        add(headerPanel, BorderLayout.NORTH);
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(6, 1));
@@ -132,9 +157,10 @@ public class LoggerGui extends JFrame {
         });
     }
 
-    //REQUIRES vailid inputs from angelNameField, dateField and transactionTypeField
-    //MODIFIES logbook, ouputArea
-    //EFFECTS adds new log entry to logbook and appends confirmation message to outputArea
+    // REQUIRES valid inputs from angelNameField, dateField and transactionTypeField
+    // MODIFIES logbook, outputArea
+    // EFFECTS adds new log entry to logbook and appends confirmation message to
+    // outputArea
     private void addLogEntry() {
         String angelName = angelNameField.getText();
         int date = Integer.parseInt(dateField.getText());
@@ -146,8 +172,9 @@ public class LoggerGui extends JFrame {
         outputArea.append("Log entry added: " + angelName + " (" + transactionType + ") on " + date + "\n");
     }
 
-    //MODIFIES outputArea
-    //EFFECTS displays list of available angels in outputArea, or message if none are available
+    // MODIFIES outputArea
+    // EFFECTS displays list of available angels in outputArea, or message if none
+    // are available
     private void viewAvailableAngels() {
         List<String> angels = logbook.getAvailableAngels();
         if (angels.isEmpty()) {
@@ -160,16 +187,16 @@ public class LoggerGui extends JFrame {
         }
     }
 
-    //MODIFIES outputArea
-    //EFFECTS displays total number of angels in collection
+    // MODIFIES outputArea
+    // EFFECTS displays total number of angels in collection
     private void viewCollectionCount() {
         int count = logbook.getCollectionCount();
         outputArea.append("You have " + count + " Sonny Angels in your collection!\n");
     }
 
-    //REQUIRES logbook has entries
-    //MODIFIES JSON and outputArea
-    //EFFECTS saves logbook to file, appends message outputArea
+    // REQUIRES logbook has entries
+    // MODIFIES JSON and outputArea
+    // EFFECTS saves logbook to file, appends message outputArea
     private void saveLogbook() {
         JsonWriter writer = new JsonWriter("./data/logbook.json");
         try {
@@ -182,9 +209,9 @@ public class LoggerGui extends JFrame {
         }
     }
 
-    //REQUIRES JSON file
-    //MODIFIES logbook, outputArea
-    //EFFECTS load entries from logbook, append message to outputArea
+    // REQUIRES JSON file
+    // MODIFIES logbook, outputArea
+    // EFFECTS load entries from logbook, append message to outputArea
     private void loadLogbook() {
         JsonReader reader = new JsonReader("./data/logbook.json");
         try {
@@ -198,9 +225,9 @@ public class LoggerGui extends JFrame {
         }
     }
 
-    //REQUIRES angelNameField, ratingField be valid
-    //MODIFIES logbook, outputArea
-    //EFFECTS rates angel and appends message to ouputArea
+    // REQUIRES angelNameField, ratingField be valid
+    // MODIFIES logbook, outputArea
+    // EFFECTS rates angel and appends message to outputArea
     private void rateAngel() {
         String angelName = angelNameField.getText();
         int rating = Integer.parseInt(ratingField.getText());
@@ -210,15 +237,14 @@ public class LoggerGui extends JFrame {
         outputArea.append("Rated " + angelName + " with a score of " + rating + "\n");
     }
 
-    //MODIFIES outputArea
-    //EFFECTS displays avg rating of all angels in collection in outputArea
+    // MODIFIES outputArea
+    // EFFECTS displays avg rating of all angels in collection in outputArea
     private void viewAverageRating() {
         double averageRating = logbook.getAverageCollectionRating();
         outputArea.append("Average Rating of Angels in Collection: " + averageRating + "\n");
     }
 
-
-    //EFFECTS creates instance of LoggerGUI
+    // EFFECTS creates instance of LoggerGUI
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override

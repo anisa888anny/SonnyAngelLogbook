@@ -46,3 +46,7 @@ A rating for Cabbage has been added
 
 Tue Nov 26 16:59:48 PST 2024
 New log entry with Cabbage added
+
+*Phase 4: Task 3*
+
+If there was time, it would be helpful to refactor LoggerApp and LoggerGui, they have similar relationships to lots of the same things however all do it seperately. It would be wise to potentially create an abstract class that implements shared features of the two classes. So this way the LoggerApp and LoggerGui similar/shared behaviors are implemented in one place, and anything changed in one can be changed in the other without going to two different places. I do also think that some of the methods I have in my LogEntry class may be better suited for my Logbook class, specifically getAverageRating. By moving this I would have a more cohesive product in the sense that I would be able to find that method in a more specific/better place making it easier to find. 

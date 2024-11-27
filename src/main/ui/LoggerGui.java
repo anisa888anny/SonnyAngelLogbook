@@ -4,6 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+import model.EventLog;
 import model.LogEntry;
 import model.Logbook;
 import persistence.JsonReader;
@@ -28,7 +32,6 @@ public class LoggerGui extends JFrame {
         setupUI();
     }
 
-    
     // MODIFIES: loggerGUI, loggerGui components
     // EFFECTS: sets up GUI buttons fields and outputs, listens for actions and
     // binds them to methods
@@ -164,6 +167,15 @@ public class LoggerGui extends JFrame {
                 viewAllEntries();
             }
         });
+
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                printEventLog();
+                dispose();
+                System.exit(0);
+            }
+        });
     }
 
     // REQUIRES valid inputs from angelNameField, dateField and transactionTypeField
@@ -254,7 +266,8 @@ public class LoggerGui extends JFrame {
     }
 
     // MODIFIES: outputArea
-    // EFFECTS: displays all log entries in the outputArea, or a message if no entries exist
+    // EFFECTS: displays all log entries in the outputArea, or a message if no
+    // entries exist
     private void viewAllEntries() {
         List<LogEntry> entries = logbook.getAllEntries();
         if (entries.isEmpty()) {
@@ -262,8 +275,8 @@ public class LoggerGui extends JFrame {
         } else {
             outputArea.append("All Log Entries:\n");
             for (LogEntry entry : entries) {
-                outputArea.append(String.format("Angel: %s, Date: %d, Transaction: %s\n", 
-                    entry.getAngelName(), entry.getDate(), entry.getTransactionType()));
+                outputArea.append(String.format("Angel: %s, Date: %d, Transaction: %s\n",
+                        entry.getAngelName(), entry.getDate(), entry.getTransactionType()));
             }
             outputArea.append("------------------------\n");
         }
@@ -278,5 +291,12 @@ public class LoggerGui extends JFrame {
                 gui.setVisible(true);
             }
         });
+    }
+
+    // EFFECTS prints the event log to console when the application closes
+    private void printEventLog() {
+        for (model.Event e : EventLog.getInstance()) {
+            System.out.println(e.toString() + "\n");
+        }
     }
 }

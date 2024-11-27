@@ -24,6 +24,7 @@ public class Logbook implements persistence.Writable {
     // EFFECTS: adds the entry to the list of entries
     public void addLogEntry(LogEntry entry) {
         entries.add(entry);
+        EventLog.getInstance().logEvent(new model.Event("New log entry with " + entry.getAngelName() + " added"));
     }
 
     // MODIFIES: this
@@ -66,7 +67,9 @@ public class Logbook implements persistence.Writable {
                 entry.addRating(rating);
                 return;
             }
+            EventLog.getInstance().logEvent(new model.Event("A rating for " + angelName + " has been added"));
         }
+
         System.out.println("Angel not found in the collection.");
     }
 
